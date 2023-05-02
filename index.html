@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <title>105_01</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
 <h1>Rejestracja</h1><br>
-<form method="get" action="form_results.html" target="_blank">
+<form method="get" action="form_results.html" target="_blank" id="my-form">
     <label for="first-name">Imię: </label>
     <input type="text" name="first-name" id="first-name"><br>
     <br>
     <label for="last-name">Nazwisko: </label>
     <input type="text" name="last-name" id="last-name"><br>
     <br>
-    <label name="gender">Płec: </label>
+    <label name="gender" id="gender">Płec: </label>
     <input type="radio" name="gender" id="male-gender" value="male-gender">
     <label for="male-gender">Mężczyzna</label>
     <input type="radio" name="gender" id="female-gender" value="female-gender">
@@ -30,7 +31,7 @@
     <label for="birth-date">Data urodzenia: </label>
     <input type="date" name="birth-date" id="birth-date"><br>
     <br>
-    <input type="submit" value="Wyślij" id="send"><br>
+    <input type="submit" value="Wyślij" id="send" name="submitBtn"><br>
 </form>
 
 <script type="text/javascript" src="script.js"></script>
