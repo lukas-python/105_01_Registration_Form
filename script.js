@@ -6,8 +6,8 @@ const login = document.querySelector("#login");
 const password = document.querySelector("#password");
 const birthDate = document.querySelector("#birth-date");
 const sendBtn = document.querySelector("#send");
-const inputElement = document.getElementsByTagName("input");
 
+// Functions for checking gender and spellings
 function checkGender (){
     if (maleGender.checked){
         return "Pan";
@@ -26,62 +26,60 @@ function spellBirth (){
     }
 }
 
+// Function with message for the user
 function alertForUser(){
     alert(`${checkGender()} ${fName.value} ${lName.value} ${spellBirth ()} ${birthDate.value} chce utworzyc konto o loginie "${login.value}"`);
 }
 
-const errorMessageStr = "Pole nie może byc puste!"
+// Function for removing error messages
+function removeErrorMessages() {
+    const errorMessages = document.querySelectorAll(".error-message");
+    errorMessages.forEach((errorMessage) => {
+        errorMessage.remove();
+    });
+}
 
-function formValidation(event) {
-    const inputs = document.querySelector("#my-form").querySelectorAll("input");
-    let isValid = true;
-    for (let i = 0; i < inputs.length; i++) {
-        if (!inputs[i].value) {
-            addErrorMessage(inputs[i], "Pole nie może być puste!");
-            isValid = false;
-        } else {
-            const error = inputs[i].parentNode.querySelector(".error-message");
-            if (error) {
-                inputs[i].parentNode.removeChild(error);
-            }
-        }
+
+// Function for form validation and add error message to each form's field
+function addErrorMessage() {
+    removeErrorMessages();
+    const errorDisplay = document.querySelectorAll(".error");
+    if(fName.value === "" ){
+        const createElement = document.createElement("div");
+        createElement.innerHTML = "<p>Pole nie może być puste!</p>";
+        createElement.classList.add("error-message");
+        errorDisplay[0].appendChild(createElement);
     }
-    if(!isValid){
-        event.preventDefault();
+    if(lName.value === ""){
+        const createElement = document.createElement("div");
+        createElement.innerHTML = "<p>Pole nie może być puste!</p>";
+        createElement.classList.add("error-message");
+        errorDisplay[1].appendChild(createElement);
+    }
+    if(login.value===""){
+        const createElement = document.createElement("div");
+        createElement.innerHTML = "<p>Pole nie może być puste!</p>";
+        createElement.classList.add("error-message");
+        errorDisplay[2].appendChild(createElement);
+    }
+    if(password.value===""){
+        const createElement = document.createElement("div");
+        createElement.innerHTML = "<p>Pole nie może być puste!</p>";
+        createElement.classList.add("error-message");
+        errorDisplay[3].appendChild(createElement);
+    }
+    if(birthDate.value ===""){
+        const createElement = document.createElement("div");
+        createElement.innerHTML = "<p>Pole nie może być puste!</p>";
+        createElement.classList.add("error-message");
+        errorDisplay[4].appendChild(createElement);
     }
     else{
         alertForUser();
     }
-}
+    }
 
-function addErrorMessage(input, errorMessageStr) {
-    const error = input.parentNode.querySelector('.error-message');
-    if (error) {
-        error.innerText = errorMessageStr;
-    }
-    else{
-        const errorDiv = document.createElement("div");
-        errorDiv.classList.add("error-message");
-        errorDiv.innerText = errorMessageStr;
-        input.after(errorDiv);
-    }
-}
 sendBtn.addEventListener("click", (event) => {
-    formValidation(event);
-
-
-    // if (fName.value === "" || lName.value === "" || login.value === "" || password.value === "" || birthDate.value === "") {
-    //     event.preventDefault();
-    //     createNewPar();
-    //     console.log("Pole nie może byc puste");
-    // }
-    //
+    event.preventDefault();
+    addErrorMessage()
 })
-
-// function createNewPar() {
-//     let createPar = document.createElement("div");
-//     createPar.innerHTML = "<p>Pole nie może by puste!</p>";
-//     for(let i=0; i < inputElement.length; i++){
-//         inputElement[i].appendChild(createPar);
-//     }
-// }
